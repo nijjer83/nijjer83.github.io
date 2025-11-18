@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>سید اهورا خوش‌رفتار — معرفی</title>
+  <meta name="description" content="سید اهورا خوش‌رفتار — محصل تیزهوشان، برنامه‌نویس و فریلنسر | Python, HTML, CSS, C++" />
+
+  <!-- Fonts (system fallback) -->
+  <style>
+    :root{
+      --grad1: #0f2027; /* dark gradient start */
+      --grad2: #203a43;
+      --grad3: #2c5364; /* teal */
+      --accent: #9b59ff; /* adjustable */
+      --accent-2: #00d2ff;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.08);
+      --text-light: #eef6fb;
+      --text-dark: #09202b;
+      --muted: rgba(230,230,230,0.6);
+    }
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; 
+      background: linear-gradient(135deg,var(--grad1),var(--grad2));
+      color:var(--text-light);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+      transition:background 450ms ease, color 350ms ease;
+      overflow-x:hidden;
+    }
+
+    /* light mode */
+    body.light{
+      --grad1: #f6f8fb; --grad2: #f0f4f8; --grad3: #e8f0f6; 
+      --accent: #5b21b6; --accent-2:#0ea5e9; --glass: rgba(0,0,0,0.04); --text-light: #072029; --muted: rgba(10,10,10,0.55);
+      background: linear-gradient(135deg,var(--grad1),var(--grad2));
+      color:var(--text-light);
+    }
+
+    .container{max-width:1100px;margin:0 auto;padding:40px 24px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:40px 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));backdrop-filter: blur(6px);border-radius:16px;padding:26px}
+
+    .name{font-size:clamp(28px,4vw,44px);font-weight:700;margin:0}
+    .title{color:var(--muted);margin-top:6px;font-size:15px}
+    .lead{margin:18px 0 22px;line-height:1.6;color:var(--muted)}
+
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--text-light)}
+
+    /* profile card */
+    .profile{padding:20px;border-radius:14px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+    .avatar{width:140px;height:140px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:40px;color:white}
+
+    /* skills */
+    .skills{display:flex;flex-direction:column;gap:12px}
+    .skill{display:flex;justify-content:space-between;align-items:center}
+    .skill .bar{background:rgba(255,255,255,0.06);height:10px;border-radius:999px;flex:1;margin-right:12px;overflow:hidden}
+    .skill .bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform-origin:left;transition:width 900ms cubic-bezier(.2,.9,.2,1)}
+
+    /* sections */
+    section{margin:40px 0}
+    h2{margin:0 0 12px;font-size:20px}
+    p.small{color:var(--muted);margin:0}
+
+    /* project cards */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .project{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:transform 350ms ease, box-shadow 350ms ease}
+    .project:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(2,6,23,0.35)}
+
+    /* contact */
+    .contact{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{padding:10px 12px;border-radius:999px;background:var(--glass);border:1px solid rgba(255,255,255,0.04);display:inline-flex;gap:8px;align-items:center}
+
+    /* Floating gradient shapes */
+    .float-grad{position:fixed;inset:auto 0 0 auto;right:10px;bottom:10px;width:360px;height:360px;pointer-events:none;filter:blur(60px);opacity:0.6;z-index:-1;background:radial-gradient(circle at 20% 20%, rgba(155,89,255,0.35), transparent 20%), radial-gradient(circle at 80% 80%, rgba(0,210,255,0.2), transparent 20%)}
+
+    /* scroll animations */
+    .reveal{opacity:0;transform:translateY(18px) scale(0.995);transition:opacity 700ms ease, transform 700ms cubic-bezier(.2,.9,.2,1)}
+    .reveal.in-view{opacity:1;transform:none}
+
+    /* small screens */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.float-grad{display:none}}
+
+    /* resume link */
+    .resume{display:inline-flex;gap:10px;align-items:center}
+
+    /* top bar */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+    .controls{display:flex;gap:8px;align-items:center}
+    .toggle{display:inline-flex;align-items:center;background:var(--glass);padding:8px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+    footer{padding:20px 0;color:var(--muted);font-size:13px;text-align:center}
+
+  </style>
+</head>
+<body>
+  <div class="float-grad"></div>
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <strong>سید اهورا خوش‌رفتار</strong>
+        <div style="font-size:13px;color:var(--muted)">محصل تیزهوشان • برنامه‌نویس شی‌گرایی • فریلنسر</div>
+      </div>
+      <div class="controls">
+        <div class="toggle" id="modeToggle" title="تغییر حالت شب / روز">حالت شب/روز</div>
+        <a class="btn ghost" href="#contact">تماس</a>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="card reveal">
+          <h1 class="name">سید اهورا خوش‌رفتار</h1>
+          <div class="title">محصل مدارس برتر و تیزهوشان — رتبه اول جشنواره فجر بخش برنامه‌نویسی (شی‌گرایی)</div>
+          <p class="lead">فعال در حوزه فریلنسری، توسعه نرم‌افزار، طراحی وب و پروژه‌های پژوهشی دانش‌آموزی. علاقه‌مند به حل مسئله، طراحی سیستم‌‌های پاک و آموزش کدنویسی.</p>
+
+          <div class="cta">
+            <a class="btn primary" href="#contact">تماس سریع</a>
+            <a class="btn ghost resume" href="#" id="downloadResume">دانلود رزومه</a>
+          </div>
+
+          <div style="margin-top:18px" class="skills">
+            <div class="skill"><strong>پایتون (پیشرفته)</strong><div class="bar"><i style="width:92%"></i></div></div>
+            <div class="skill"><strong>HTML / CSS</strong><div class="bar"><i style="width:88%"></i></div></div>
+            <div class="skill"><strong>C++</strong><div class="bar"><i style="width:76%"></i></div></div>
+          </div>
+        </div>
+
+        <aside class="card profile reveal">
+          <div class="avatar">AH</div>
+          <div style="font-weight:700">سید اهورا خوش‌رفتار</div>
+          <div style="font-size:13px;color:var(--muted)">محصل تیزهوشان • فریلنسر • توسعه‌دهنده وب و الگوریتم</div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a class="chip" href="https://t.me/w4linfo" target="_blank">Telegram • @w4linfo</a>
+            <a class="chip" href="mailto:s.Ahoora@outlook.com">Email • s.Ahoora@outlook.com</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card reveal">
+        <h2>درباره من</h2>
+        <p class="small">محصل مدارس برتر و تیزهوشان با تجربه رقابتی در برنامه‌نویسی شی‌گرایی و کسب رتبه اول در جشنواره فجر (بخش برنامه‌نویسی). فعال به‌عنوان فریلنسر در پروژه‌های توسعه وب و پایتون پیشرفته، علاقمند به کار بر روی پروژه‌های چالش‌برانگیز و یادگیری مداوم.</p>
+      </section>
+
+      <section class="reveal">
+        <h2>مهارت‌ها و تکنولوژی‌ها</h2>
+        <div class="projects">
+          <div class="project">
+            <strong>پایتون پیشرفته</strong>
+            <p class="small">تحلیل داده، اسکریپت‌نویسی، توسعه backend و الگوریتم‌ها.</p>
+          </div>
+          <div class="project">
+            <strong>HTML & CSS</strong>
+            <p class="small">طراحی landing page، responsive و پیاده‌سازی UI مدرن.</p>
+          </div>
+          <div class="project">
+            <strong>C++</strong>
+            <p class="small">مسائل الگوریتمی، بهینه‌سازی و پیاده‌سازی ساختار داده‌ها.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="card reveal">
+        <h2>تماس</h2>
+        <div class="contact">
+          <a class="chip" href="https://t.me/w4linfo" target="_blank">Telegram • @w4linfo</a>
+          <a class="chip" href="mailto:s.Ahoora@outlook.com">Email • s.Ahoora@outlook.com</a>
+          <a class="chip" href="#" id="contactFormBtn">فرم تماس</a>
+        </div>
+
+        <div id="contactForm" style="margin-top:14px;display:none">
+          <form onsubmit="event.preventDefault();alert('پیام ارسال شد — برای دمو فقط شبیه‌سازی');">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input required placeholder="نام شما" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" />
+              <input required placeholder="ایمیل یا تلگرام" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" />
+            </div>
+            <textarea required placeholder="پیام" style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)"></textarea>
+            <div style="margin-top:8px"><button class="btn primary" type="submit">ارسال</button></div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="reveal">© 2025 سید اهورا خوش‌رفتار — ساخته شده با ❤️ — برای شخصی‌سازی بیشتر پیام بدید.</footer>
+  </div>
+
+  <script>
+    // Mode toggle (حالت شب/روز)
+    const modeToggle = document.getElementById('modeToggle');
+    const body = document.body;
+    // restore preference if existed
+    if(localStorage.getItem('site-mode') === 'light') body.classList.add('light');
+    modeToggle.addEventListener('click', ()=>{
+      body.classList.toggle('light');
+      localStorage.setItem('site-mode', body.classList.contains('light')? 'light':'dark');
+    });
+
+    // IntersectionObserver for reveal animations (افکت اسکرول حرفه‌ای)
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('in-view');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Simple floating parallax on scroll for hero avatar
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY;
+      const avatar = document.querySelector('.avatar');
+      if(avatar) avatar.style.transform = `translateY(${Math.min(20,y*0.08)}px)`;
+    });
+
+    // download resume (placeholder) — replace href to real file
+    document.getElementById('downloadResume').addEventListener('click', (e)=>{
+      e.preventDefault();
+      // for demo: create a small CV file on the fly
+      const cv = `Seyed Ahoura KhoshRaftar\n\nمحصل تیزهوشان - برنامه‌نویس\nمهارت‌ها: Python, HTML, CSS, C++\nتماس: s.Ahoora@outlook.com`;
+      const blob = new Blob([cv], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Resume_S_Ahoora.txt'; document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // contact form toggle
+    document.getElementById('contactFormBtn').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const f = document.getElementById('contactForm');
+      f.style.display = f.style.display === 'none' ? 'block' : 'none';
+      f.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+  </script>
+</body>
+</html>
